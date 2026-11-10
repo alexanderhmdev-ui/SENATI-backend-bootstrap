@@ -13,7 +13,7 @@ const CAMPOS = "id, marca, descripcion, precio, stock" //dato comun
 const listarProductos = async (req, res) => {
   //Se utilizar try - catch por que existe una probabilidad de error
   try {
-    const [productos] = await pool.query("SELECT * FROM productos ORDER BY id");
+    const [productos] = await pool.query('SELECT * FROM productos ORDER BY id');
     res.status(200).json({
       ok: true,
       total: productos.length,

@@ -6,7 +6,7 @@ const app = express()
 
 app.use(express.json())
 
-appp.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).json({
     ok: true,
     message: 'API REST ejecutandose correctamente'
