@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise')//Accediendo modulo de conexion
-const {db}= requiere('./env.js') //Leer y validar los parametros de conexion
+const {db}= require('./env.js') //Leer y validar los parametros de conexion
 
 //Este archivo gestiona la conexion al SERVER y la DB
 const pool = mysql.createPool({
