@@ -87,7 +87,7 @@ const crearProductos = async (req, res) => {
     //procedemos a guardar los datos
     const {marca, descripcion, precio, stock} = req.body 
     const consulta = `INSERT INTO productos (marca, descripcion, precio, stock) VALUES (?,?,?,?)`
-    await pool.execute(consulta, [marca, descripcion, precio, stock])
+    const [registro] = await pool.execute(consulta, [marca, descripcion, precio, stock])
 
     res.status(201).json({
       ok: true,
@@ -104,6 +104,38 @@ const crearProductos = async (req, res) => {
 
 const actualizarProductos = async (req, res) => {
   try {
+    //Obtener el id del producto actualizado 
+    const id = Number(req.params.id)
+
+    if (id < 0){
+      return res.status(400).json({
+        ok: false ,
+        message: 'El id no puede ser negativo'
+      })
+    }
+
+    const errores = validarCampos(req.body)                                 
+    if (errores.lenght > 0){
+      return res.status(400).json({
+        ok: false,
+        message: 'Verifique los datos solicitados', 
+        errores
+      })
+    }
+    const [existe] = await pool.execute('SELECT id FROM productos WHERE id = ?', [id])
+    if (existe === 0){
+      return res.status(404).json({
+
+      })
+    }
+    const consulta = 'UPDATE productos SET marca=?, descripcion=?, precio=?, stock=? WHERE id=?'
+    const { marca, descripcion, precio, stock} = req.body
+    const [resultado] = await pool.execute(consulta, [marca, descripcion, precio, stock, id])
+    
+    res.status(204).json({
+      ok: true,
+      filasAfectdas: resultado.affectedRows
+    })
   } catch (e) {
     console.error(e);
     res.status(500).json({
