@@ -134,7 +134,7 @@ const actualizarProductos = async (req, res) => {
     
     res.status(204).json({
       ok: true,
-      filasAfectdas: resultado.affectedRows
+      filasAfectadas: resultado.affectedRows
     })
   } catch (e) {
     console.error(e);
@@ -147,6 +147,22 @@ const actualizarProductos = async (req, res) => {
 
 const elimnarProductos = async (req, res) => {
   try {
+    const id = Number(req.params.id)
+
+
+    const [resultado] =  await pool.execute('DELETE FROM productos WHERE id = ?', [id])
+
+    if (resultado.affectedRows === 0 ){
+      return res.status(404).json({
+        ok: false, 
+        message: 'EL id no existe '
+      })
+    }
+
+    res.status(200).json({
+      ok: true,
+      message: 'Producto eliminado'
+    })
   } catch (e) {
     console.error(e);
     res.status(500).json({
