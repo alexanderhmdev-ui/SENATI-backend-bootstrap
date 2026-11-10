@@ -4,8 +4,8 @@
 //Paso 1
 //const objeto= requiere() //Todas las funciones
 //const { otroObjeto } = require('') // Solo algunas funciones
-const { pool } = require("../config/database");
-const CAMPOS = "id, marca, descripcion, precio, stock"; //dato comun
+const { pool } = require("../config/database")
+const CAMPOS = "id, marca, descripcion, precio, stock" //dato comun
 
 //Todas las funciones seran asincronas (tardaran un tiempo en ser resueltas...)
 //milisegundos, segundos (1000 = 1seg)
@@ -27,16 +27,34 @@ const listarProductos = async (req, res) => {
     });
   }
 };
-
+//buscar ¿Como funciona?
+//API REST => http://miaplicacion.com/api/productos/1
 const obtenerProductos = async (req, res) => {
   try {
-    const [productos] = await pool.query("SELECT * FROM productos ORDER BY id");
+    const id = Number(req.params.id)
+    if (id <= 0 ){
+      return res.status(400).json({
+        ok: false,
+        message: 'EL id no puede ser negativo o 0'
+      })
+    }
+
+    //SI podemos buscar (>0)
+    //Utilizaremos 'execute' porque pasaremos parametros
+    const [registro] = await pool.execute(`SELECT * FROM productos WHERE id = ?`,[id])
+
+    if(registro.length === 0){
+      return res.status(404).json({
+      ok: false,
+      message: 'No existe el produto'
+      })
+    }
+
     res.status(200).json({
       ok: true,
-      total: productos.length,
-      data: productos,
-    });
-  } catch (e) {
+      data: registro[0]
+    })
+  }catch(e){
     console.error(e);
     res.status(500).json({
       ok: false,
@@ -47,54 +65,36 @@ const obtenerProductos = async (req, res) => {
 
 const crearProductos = async (req, res) => {
   try {
-    const [productos] = await pool.query("SELECT * FROM productos ORDER BY id");
-    res.status(200).json({
-      ok: true,
-      total: productos.length,
-      data: productos,
-    });
   } catch (e) {
     console.error(e);
     res.status(500).json({
       ok: false,
       message: "Error interno en el servidor",
-    });
+    })
   }
-};
+}
 
 const actualizarProductos = async (req, res) => {
   try {
-    const [productos] = await pool.query("SELECT * FROM productos ORDER BY id");
-    res.status(200).json({
-      ok: true,
-      total: productos.length,
-      data: productos,
-    });
   } catch (e) {
     console.error(e);
     res.status(500).json({
       ok: false,
       message: "Error interno en el servidor",
-    });
+    })
   }
-};
+}
 
 const elimnarProductos = async (req, res) => {
   try {
-    const [productos] = await pool.query("SELECT * FROM productos ORDER BY id");
-    res.status(200).json({
-      ok: true,
-      total: productos.length,
-      data: productos,
-    });
   } catch (e) {
     console.error(e);
     res.status(500).json({
       ok: false,
       message: "Error interno en el servidor",
-    });
+    })
   }
-};
+}
 
 //Todos los metodos deben ser Exportados (se utilizaran desde la app)
 //el que lo utilizara sera "routes"
@@ -105,4 +105,4 @@ module.exports = {
   crearProductos,
   actualizarProductos,
   elimnarProductos,
-};
+}
