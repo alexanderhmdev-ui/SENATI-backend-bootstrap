@@ -46,12 +46,12 @@ Servicio Backend desarrollado con **Node.js**, **Express** y **MySQL** para la g
    PORT=3000
 
    # Base de datos MySQL
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
+   DB_HOST=
+   DB_PORT=
+   DB_USER=
    DB_PASSWORD=
-   DB_NAME=tiendaperu
-   DB_CONNECTION_LIMIT=10
+   DB_NAME=
+   DB_CONNECTION_LIMIT=
    ```
 
 4. Ejecutar el script `database/db.sql` en MySQL para crear la base de datos `tiendaperu`, las tablas (`productos`, `clientes`, `proveedores`) y sus registros de prueba.
