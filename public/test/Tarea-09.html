@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarea 09 - Alumnos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="bi bi-mortarboard"></i> Antiguos alumnos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Alumnos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Carreras</a></li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" id="buscar" placeholder="Buscar...">
+          <button class="btn btn-outline-light" type="button"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Lista de Alumnos</h2>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAlumno"
+        onclick="cambiarTitulo('Nuevo alumno')">
+        <i class="bi bi-plus-lg"></i> Nuevo alumno
+      </button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Apellidos</th>
+            <th>Nombres</th>
+            <th>Carrera</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaAlumnos">
+          <tr>
+            <td>1</td><td>Peralta</td><td>Nicolas</td><td>Ingeniería de Software</td><td>908908098</td><td>joseperlita4@gmail.com</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td><td>García</td><td>Andrés</td><td>Ingeniería de Software</td><td>900000005</td><td>andres.garcia@example.com</td>
+            <td class="text-center"><button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button> <button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td>3</td><td>Rojas</td><td>Camila</td><td>Diseño Gráfico Digital</td><td>900000001</td><td>camila.rojas@example.com</td>
+            <td class="text-center"><button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button> <button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td>4</td><td>Vargas</td><td>Mateo</td><td>Administración Industrial</td><td>900000002</td><td>mateo.vargas@example.com</td>
+            <td class="text-center"><button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button> <button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td>5</td><td>Quispe</td><td>Lucía</td><td>Diseño Gráfico Digital</td><td>900000003</td><td>lucia.quispe@example.com</td>
+            <td class="text-center"><button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button> <button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td>6</td><td>Salazar</td><td>Diego</td><td>Administración Industrial</td><td>900000004</td><td>diego.salazar@example.com</td>
+            <td class="text-center"><button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button> <button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-muted">Total: <span id="total">6</span> alumnos registrados</p>
+
+  </div>
+
+  <div class="modal fade" id="modalAlumno" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Nuevo alumno</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAlumno">
+            <div class="mb-3">
+              <label class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nombres</label>
+              <input type="text" class="form-control" id="nombres" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Carrera</label>
+              <select class="form-select" id="carrera" required>
+                <option value="">Seleccione...</option>
+                <option>Ingeniería de Software</option>
+                <option>Diseño Gráfico Digital</option>
+                <option>Administración Industrial</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Correo</label>
+              <input type="email" class="form-control" id="correo" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="guardar()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const tabla = document.getElementById("tablaAlumnos");
+    const formulario = document.getElementById("formAlumno");
+    const modal = new bootstrap.Modal(document.getElementById("modalAlumno"));
+    let filaActual = null;
+
+    function cambiarTitulo(texto) {
+      document.getElementById("tituloModal").textContent = texto;
+      formulario.reset();
+      filaActual = null;
+    }
+
+    tabla.addEventListener("click", function (e) {
+      const boton = e.target.closest("button");
+      if (!boton) return;
+
+      const fila = boton.closest("tr");
+      if (boton.classList.contains("eliminar")) {
+        fila.remove();
+        actualizarTotal();
+      } else if (boton.classList.contains("editar")) {
+        filaActual = fila;
+        document.getElementById("tituloModal").textContent = "Editar alumno";
+        document.getElementById("apellidos").value = fila.cells[1].textContent;
+        document.getElementById("nombres").value = fila.cells[2].textContent;
+        document.getElementById("carrera").value = fila.cells[3].textContent;
+        document.getElementById("telefono").value = fila.cells[4].textContent;
+        document.getElementById("correo").value = fila.cells[5].textContent;
+        modal.show();
+      }
+    });
+
+    function guardar() {
+      if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+      }
+
+      const apellidos = document.getElementById("apellidos").value.trim();
+      const nombres = document.getElementById("nombres").value.trim();
+      const carrera = document.getElementById("carrera").value;
+      const telefono = document.getElementById("telefono").value.trim();
+      const correo = document.getElementById("correo").value.trim();
+
+      if (filaActual) {
+        filaActual.cells[1].textContent = apellidos;
+        filaActual.cells[2].textContent = nombres;
+        filaActual.cells[3].textContent = carrera;
+        filaActual.cells[4].textContent = telefono;
+        filaActual.cells[5].textContent = correo;
+      } else {
+        const fila = document.createElement("tr");
+        fila.innerHTML =
+          `<td>${tabla.rows.length + 1}</td>` +
+          `<td>${apellidos}</td><td>${nombres}</td><td>${carrera}</td>` +
+          `<td>${telefono}</td><td>${correo}</td>` +
+          `<td class="text-center"><button class="btn btn-sm btn-warning editar"><i class="bi bi-pencil"></i></button> ` +
+          `<button class="btn btn-sm btn-danger eliminar"><i class="bi bi-trash"></i></button></td>`;
+        tabla.appendChild(fila);
+      }
+
+      actualizarTotal();
+      modal.hide();
+    }
+
+    function actualizarTotal() {
+      document.getElementById("total").textContent = tabla.rows.length;
+    }
+
+    document.getElementById("buscar").addEventListener("input", function (e) {
+      const texto = e.target.value.toLowerCase();
+      for (const fila of tabla.rows) {
+        fila.style.display = fila.textContent.toLowerContent().includes(texto) ? "" : "none";
+      }
+    });
+  </script>
+</body>
+</html>
