@@ -1,53 +1,72 @@
-API REST
-Sistema para compartir datos de tienda Peru
-Requerimientos
+# API REST — Tienda Perú
 
-instalacion nodejs(v20 o superior)
-Acceso a internet (instalar dependencia)
-Clone al repositorio, y ejecute npminstall
-Requerimos el archivo _.env_
+API REST desarrollada con **Node.js**, **Express** y **MySQL** para gestionar y compartir los datos de los módulos de **productos**, **clientes** y **proveedores** de la base de datos de Tienda Perú.
+
+---
+
+## Tecnologías
+
+* **Entorno de ejecución:** Node.js (v20 o superior)
+* **Framework:** Express 5
+* **Base de datos:** MySQL (`mysql2`)
+* **Variables de entorno:** `dotenv`
+* **Desarrollo:** `nodemon`
+* **Pruebas de endpoints:** Postman (o cualquier cliente REST similar)
+
+---
+
+## Estructura del proyecto
+
+```text
+api-productos/
+├── database/
+│   └── db.sql               # Script de la BD (tablas + registros de prueba)
+├── src/
+│   ├── config/
+│   │   ├── env.js           # Carga y validación de variables de entorno
+│   │   └── database.js      # Configuración del pool de conexión MySQL
+│   ├── controllers/         # Lógica de negocio (producto, cliente, proveedor)
+│   ├── routes/              # Definición de rutas + index.js
+│   ├── app.js               # Configuración de middlewares y Express
+│   └── server.js            # Punto de entrada y arranque del servidor
+├── .env                     # Variables de entorno (no subir al repositorio)
+├── .env.example             # Plantilla de configuración
+└── package.json
+```
+
+---
+
+## Requerimientos previos
+
+* Tener instalado **Node.js v20 o superior**.
+* Contar con acceso a Internet para descargar las dependencias del proyecto.
+* Tener un servidor **MySQL** activo (Laragon, XAMPP, MySQL Workbench o servicio nativo).
+* Tener instalado **Postman** (o Thunder Client / Insomnia) para probar las peticiones HTTP.
+
+---
+
+## Instalación y configuración
+
+### 1. Clonar el repositorio e instalar dependencias
+
+```bash
+git clone [https://github.com/TU_USUARIO/api-productos.git](https://github.com/TU_USUARIO/api-productos.git)
+cd api-productos
+npm install
+```
+
+### 2. Configurar variables de entorno (`.env`)
+
+Crea un archivo `.env` en la raíz del proyecto (puedes tomar como base `.env.example`) y completa tus credenciales privadas:
+
+```env
 PORT=3000
-DB_HOST=
-DB_PORT=3306
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
+DB_HOST=********
+DB_PORT=****
+DB_USER=********
+DB_PASSWORD=********
+DB_NAME=********
 DB_CONNECTION_LIMIT=10
-Necesitamos la tabla productos
-CREATE TABLE IF NOT EXISTS productos (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    marca VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(100) NOT NULL,
-    precio VARCHAR(100) NOT NULL,
-    stock VARCHAR(100) NOT NULL DEFAULT 0,
-    create_at DATETIME NOT NULL DEFAULT NOW(),
-    update_at DATETIME NULL
-) ENGINE=INNODB;
-Ejecutar el proyetco escribiendo : node src/server
-Utlice Postman Descargar_Postman o cualquier softwrae similar pra realizar el TEST
-API REST hecha con Node.js + Express + MySQL que administra los módulos de productos, clientes y proveedores de la base de datos tiendaperu.
+```
 
-Tecnologías
-Node.js · Express 5 · mysql2 · dotenv · nodemon (desarrollo)
-
-Estructura
-database/db.sql              -> script de la BD (3 tablas + 3 registros de prueba c/u)
-src/config/                  -> env.js (variables) y database.js (conexión MySQL)
-src/controllers/             -> producto / cliente / proveedor .controller.js
-src/routes/                  -> producto / cliente / proveedor .routes.js + index.js
-src/app.js                   -> configuración de Express
-src/server.js                -> arranque del servidor
-Instalación y ejecución
-Clonar: git clone https://github.com/TU_USUARIO/api-productos.git y entrar a la carpeta.
-Instalar dependencias: npm install
-Crear la base de datos: importar database/db.sql en MySQL (phpMyAdmin / Workbench / mysql -u root < database/db.sql).
-Crear el archivo .env en la raíz (puede copiarse de .env.example):
-PORT=3000
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=tiendaperu
-DB_CONNECTION_LIMIT=10
-Ejecutar: npm run dev (con nodemon) o npm start.
-Abrir http://localhost:3000/ → debe mostrar "API REST ejecutandose correctamente".
+> **
