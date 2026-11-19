@@ -1,284 +1,320 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tarea 09 - Biblioteca</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css"
-    />
-  </head>
-  <body>
-    <nav class="navbar md:navbar-expand bg-1">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <i class="bi bi-book"></i> Biblioteca Central
-        </a>
-        <button
-          class="btn-icon navbar-toggler"
-          type="button"
-          data-bs-toggle="drawer"
-          data-bs-target="#navbarDrawer"
-          aria-controls="navbarDrawer"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon" aria-hidden="true"></span>
-        </button>
 
-        <dialog
-          class="drawer drawer-end"
-          tabindex="-1"
-          id="navbarDrawer"
-          aria-labelledby="navbarDrawerLabel"
-        >
-          <div class="drawer-header">
-            <h5 class="drawer-title" id="navbarDrawerLabel">Menú</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="drawer"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="drawer-body mb-2 md:mb-0">
-            <ul class="nav navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Libros</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Géneros</a>
-              </li>
-            </ul>
-            <form class="hstack gap-2" role="search">
-              <input
-                class="form-control"
-                type="search"
-                id="buscar"
-                placeholder="Buscar libro..."
-              />
-              <button class="btn-solid btn-icon theme-secondary" type="button">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
-          </div>
-        </dialog>
-      </div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarea 09 - Biblioteca</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" />
+</head>
 
-  
-    <div class="container mt-4">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Catálogo de Libros</h2>
-        <button
-          class="btn-solid theme-primary"
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#modalLibro"
-          onclick="cambiarTitulo('Nuevo libro')"
-        >
-          <i class="bi bi-plus-lg"></i> Nuevo libro
-        </button>
-      </div>
+<body>
+  <nav class="navbar md:navbar-expand bg-1">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-book"></i> Biblioteca Central
+      </a>
+      <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarDrawer"
+        aria-controls="navbarDrawer" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" aria-hidden="true"></span>
+      </button>
 
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Título</th>
-              <th>Autor</th>
-              <th>Género</th>
-              <th>Año</th>
-              <th>Editorial</th>
-              <th class="text-center">Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tablaLibros">
-            <tr>
-              <td>1</td>
-              <td>Cien años de soledad</td>
-              <td>Gabriel García Márquez</td>
-              <td>Realismo Mágico</td>
-              <td>1967</td>
-              <td>Sudamericana</td>
-              <td class="text-center">
-                <button class="btn-solid btn-icon theme-warning editar" type="button">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>El principito</td>
-              <td>Antoine de Saint-Exupéry</td>
-              <td>Fábula</td>
-              <td>1943</td>
-              <td>Salamandra</td>
-              <td class="text-center">
-                <button class="btn-solid btn-icon theme-warning editar" type="button">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>1984</td>
-              <td>George Orwell</td>
-              <td>Ciencia Ficción</td>
-              <td>1949</td>
-              <td>Debolsillo</td>
-              <td class="text-center">
-                <button class="btn-solid btn-icon theme-warning editar" type="button">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>La ciudad y los perros</td>
-              <td>Mario Vargas Llosa</td>
-              <td>Novela</td>
-              <td>1963</td>
-              <td>Alfaguara</td>
-              <td class="text-center">
-                <button class="btn-solid btn-icon theme-warning editar" type="button">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Noches Blancas</td>
-              <td>Fyodor Dostoevsky</td>
-              <td>Novela</td>
-              <td>1848 </td>
-              <td>Alianza</td>
-              <td class="text-center">
-                <button class="btn-solid btn-icon theme-warning editar" type="button">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Crónica de una muerte anunciada</td>
-              <td>Gabriel García Márquez</td>
-              <td>Novela</td>
-              <td>1981</td>
-              <td>Diana</td>
-              <td class="text-center">
-                <button class="btn-solid btn-icon theme-warning editar" type="button">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <dialog class="drawer drawer-end" tabindex="-1" id="navbarDrawer" aria-labelledby="navbarDrawerLabel">
+        <div class="drawer-header">
+          <h5 class="drawer-title" id="navbarDrawerLabel">Menú</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+        </div>
+        <div class="drawer-body mb-2 md:mb-0">
+          <ul class="nav navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Libros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Géneros</a>
+            </li>
+          </ul>
+          <form class="hstack gap-2" role="search">
+            <input class="form-control" type="search" id="buscar" placeholder="Buscar libro..." />
+            <button class="btn-solid btn-icon theme-secondary" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+        </div>
+      </dialog>
+    </div>
+  </nav>
 
-      <p class="text-muted">
-        Total: <span id="total">6</span> libros registrados
-      </p>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Catálogo de Libros</h2>
+      <button class="btn-solid theme-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalLibro"
+        onclick="cambiarTitulo('Nuevo libro')">
+        <i class="bi bi-plus-lg"></i> Nuevo libro
+      </button>
     </div>
 
-    <dialog class="modal" id="modalLibro" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="tituloModal">Nuevo libro</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              onclick="cerrarModal()"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="formLibro">
-              <div class="mb-3">
-                <label class="form-label">Título</label>
-                <input type="text" class="form-control" id="titulo" required />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Autor</label>
-                <input type="text" class="form-control" id="autor" required />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Género</label>
-                <select class="form-select" id="genero" required>
-                  <option value="">Seleccione...</option>
-                  <option>Realismo Mágico</option>
-                  <option>Fábula</option>
-                  <option>Ciencia Ficción</option>
-                  <option>Novela</option>
-                  <option>Clásico</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Año</label>
-                <input type="number" class="form-control" id="anio" required />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Editorial</label>
-                <input type="text" class="form-control" id="editorial" required />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn-solid theme-secondary"
-              data-bs-dismiss="modal"
-              onclick="cerrarModal()"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn-solid theme-primary"
-              onclick="guardar()"
-            >
-              Guardar
-            </button>
-          </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Género</th>
+            <th>Año</th>
+            <th>Editorial</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaLibros">
+          <tr>
+            <td>1</td>
+            <td>Cien años de soledad</td>
+            <td>Gabriel García Márquez</td>
+            <td>Realismo Mágico</td>
+            <td>1967</td>
+            <td>Sudamericana</td>
+            <td class="text-center">
+              <button class="btn-solid btn-icon theme-warning editar" type="button">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>El principito</td>
+            <td>Antoine de Saint-Exupéry</td>
+            <td>Fábula</td>
+            <td>1943</td>
+            <td>Salamandra</td>
+            <td class="text-center">
+              <button class="btn-solid btn-icon theme-warning editar" type="button">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>1984</td>
+            <td>George Orwell</td>
+            <td>Ciencia Ficción</td>
+            <td>1949</td>
+            <td>Debolsillo</td>
+            <td class="text-center">
+              <button class="btn-solid btn-icon theme-warning editar" type="button">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>La ciudad y los perros</td>
+            <td>Mario Vargas Llosa</td>
+            <td>Novela</td>
+            <td>1963</td>
+            <td>Alfaguara</td>
+            <td class="text-center">
+              <button class="btn-solid btn-icon theme-warning editar" type="button">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Noches Blancas</td>
+            <td>Fyodor Dostoevsky</td>
+            <td>Novela</td>
+            <td>1848 </td>
+            <td>Alianza</td>
+            <td class="text-center">
+              <button class="btn-solid btn-icon theme-warning editar" type="button">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Crónica de una muerte anunciada</td>
+            <td>Gabriel García Márquez</td>
+            <td>Novela</td>
+            <td>1981</td>
+            <td>Diana</td>
+            <td class="text-center">
+              <button class="btn-solid btn-icon theme-warning editar" type="button">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-muted">
+      Total: <span id="total">6</span> libros registrados
+    </p>
+  </div>
+
+  <dialog class="modal" id="modalLibro" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Nuevo libro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formLibro">
+            <div class="mb-3">
+              <label class="form-label">Título</label>
+              <input type="text" class="form-control" id="titulo" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Autor</label>
+              <input type="text" class="form-control" id="autor" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Género</label>
+              <select class="form-select" id="genero" required>
+                <option value="">Seleccione...</option>
+                <option>Realismo Mágico</option>
+                <option>Fábula</option>
+                <option>Ciencia Ficción</option>
+                <option>Novela</option>
+                <option>Clásico</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Año</label>
+              <input type="number" class="form-control" id="anio" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Editorial</label>
+              <input type="text" class="form-control" id="editorial" required />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-solid theme-secondary" data-bs-dismiss="modal" onclick="cerrarModal()">
+            Cancelar
+          </button>
+          <button type="button" class="btn-solid theme-primary" onclick="guardar()">
+            Guardar
+          </button>
         </div>
       </div>
-    </dialog>
+    </div>
+  </dialog>
 
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous">
+    </script>
+  <script>
+    const tabla = document.getElementById("tablaLibros");
+    const formulario = document.getElementById("formLibro");
+    const modal = document.getElementById("modalLibro");
+    let filaActual = null;
+
+    function cambiarTitulo(texto) {
+      document.getElementById("tituloModal").textContent = texto;
+      formulario.reset();
+      filaActual = null;
+    }
+
+    function cerrarModal() {
+      if (modal.open) {
+        modal.close();
+      }
+    }
+
+    tabla.addEventListener("click", function (e) {
+      const boton = e.target.closest("button");
+      if (!boton) return;
+
+      const fila = boton.closest("tr");
+      if (boton.classList.contains("eliminar")) {
+        fila.remove();
+        actualizarTotal();
+      } else if (boton.classList.contains("editar")) {
+        filaActual = fila;
+        document.getElementById("tituloModal").textContent = "Editar libro";
+        document.getElementById("titulo").value = fila.cells[1].textContent;
+        document.getElementById("autor").value = fila.cells[2].textContent;
+        document.getElementById("genero").value = fila.cells[3].textContent;
+        document.getElementById("anio").value = fila.cells[4].textContent;
+        document.getElementById("editorial").value = fila.cells[5].textContent;
+        modal.showModal();
+      }
+    });
+
+    function guardar() {
+      if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+      }
+
+      const titulo = document.getElementById("titulo").value.trim();
+      const autor = document.getElementById("autor").value.trim();
+      const genero = document.getElementById("genero").value;
+      const anio = document.getElementById("anio").value.trim();
+      const editorial = document.getElementById("editorial").value.trim();
+
+      if (filaActual) {
+        filaActual.cells[1].textContent = titulo;
+        filaActual.cells[2].textContent = autor;
+        filaActual.cells[3].textContent = genero;
+        filaActual.cells[4].textContent = anio;
+        filaActual.cells[5].textContent = editorial;
+      } else {
+        const fila = document.createElement("tr");
+        fila.innerHTML =
+          `<td>${tabla.rows.length + 1}</td>` +
+          `<td>${titulo}</td><td>${autor}</td><td>${genero}</td>` +
+          `<td>${anio}</td><td>${editorial}</td>` +
+          `<td class="text-center"><button class="btn-solid btn-icon theme-warning editar" type="button"><i class="bi bi-pencil"></i></button> ` +
+          `<button class="btn-solid btn-icon theme-danger eliminar" type="button"><i class="bi bi-trash"></i></button></td>`;
+        tabla.appendChild(fila);
+      }
+
+      actualizarTotal();
+      cerrarModal();
+    }
+
+    function actualizarTotal() {
+      document.getElementById("total").textContent = tabla.rows.length;
+    }
+
+    document.getElementById("buscar").addEventListener("input", function (e) {
+      const texto = e.target.value.toLowerCase();
+      for (const fila of tabla.rows) {
+        fila.style.display = fila.textContent.toLowerCase().includes(texto)
+          ? ""
+          : "none";
+      }
+    });
+  </script>
+</body>
+
 </html>
