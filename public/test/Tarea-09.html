@@ -76,7 +76,141 @@
       </div>
     </nav>
 
+  
+    <div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Catálogo de Libros</h2>
+        <button
+          class="btn-solid theme-primary"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#modalLibro"
+          onclick="cambiarTitulo('Nuevo libro')"
+        >
+          <i class="bi bi-plus-lg"></i> Nuevo libro
+        </button>
+      </div>
 
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Género</th>
+              <th>Año</th>
+              <th>Editorial</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaLibros">
+            <tr>
+              <td>1</td>
+              <td>Cien años de soledad</td>
+              <td>Gabriel García Márquez</td>
+              <td>Realismo Mágico</td>
+              <td>1967</td>
+              <td>Sudamericana</td>
+              <td class="text-center">
+                <button class="btn-solid btn-icon theme-warning editar" type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>El principito</td>
+              <td>Antoine de Saint-Exupéry</td>
+              <td>Fábula</td>
+              <td>1943</td>
+              <td>Salamandra</td>
+              <td class="text-center">
+                <button class="btn-solid btn-icon theme-warning editar" type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>1984</td>
+              <td>George Orwell</td>
+              <td>Ciencia Ficción</td>
+              <td>1949</td>
+              <td>Debolsillo</td>
+              <td class="text-center">
+                <button class="btn-solid btn-icon theme-warning editar" type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>La ciudad y los perros</td>
+              <td>Mario Vargas Llosa</td>
+              <td>Novela</td>
+              <td>1963</td>
+              <td>Alfaguara</td>
+              <td class="text-center">
+                <button class="btn-solid btn-icon theme-warning editar" type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Noches Blancas</td>
+              <td>Fyodor Dostoevsky</td>
+              <td>Novela</td>
+              <td>1848 </td>
+              <td>Alianza</td>
+              <td class="text-center">
+                <button class="btn-solid btn-icon theme-warning editar" type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Crónica de una muerte anunciada</td>
+              <td>Gabriel García Márquez</td>
+              <td>Novela</td>
+              <td>1981</td>
+              <td>Diana</td>
+              <td class="text-center">
+                <button class="btn-solid btn-icon theme-warning editar" type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn-solid btn-icon theme-danger eliminar" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-muted">
+        Total: <span id="total">6</span> libros registrados
+      </p>
+    </div>
+
+    
     <script
       type="module"
       src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
