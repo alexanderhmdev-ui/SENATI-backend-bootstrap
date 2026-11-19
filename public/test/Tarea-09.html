@@ -16,7 +16,65 @@
     />
   </head>
   <body>
+    <nav class="navbar md:navbar-expand bg-1">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-book"></i> Biblioteca Central
+        </a>
+        <button
+          class="btn-icon navbar-toggler"
+          type="button"
+          data-bs-toggle="drawer"
+          data-bs-target="#navbarDrawer"
+          aria-controls="navbarDrawer"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
 
+        <dialog
+          class="drawer drawer-end"
+          tabindex="-1"
+          id="navbarDrawer"
+          aria-labelledby="navbarDrawerLabel"
+        >
+          <div class="drawer-header">
+            <h5 class="drawer-title" id="navbarDrawerLabel">Menú</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="drawer"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="drawer-body mb-2 md:mb-0">
+            <ul class="nav navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Libros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Géneros</a>
+              </li>
+            </ul>
+            <form class="hstack gap-2" role="search">
+              <input
+                class="form-control"
+                type="search"
+                id="buscar"
+                placeholder="Buscar libro..."
+              />
+              <button class="btn-solid btn-icon theme-secondary" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+        </dialog>
+      </div>
+    </nav>
 
 
     <script
