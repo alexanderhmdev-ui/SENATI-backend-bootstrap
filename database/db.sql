@@ -59,3 +59,16 @@ INSERT INTO proveedores
 SELECT * FROM productos;
 SELECT * FROM clientes;
 SELECT * FROM proveedores;
+
+CREATE TABLE IF NOT EXISTS tiendas
+(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cuidad VARCHAR(150) NOT NULL,
+    direccion VARCHAR(100) NOT NULL,
+	telefono CHAR(11) NOT NULL,
+    responsable VARCHAR(200) NOT NULL,
+	apertura DATETIME NOT NULL DEFAULT NOW(),
+    cierre  DATETIME NULL,
+    create_at DATETIME NOT NULL DEFAULT NOW(),
+    update_at DATETIME NULL
+)ENGINE = INNODB;
