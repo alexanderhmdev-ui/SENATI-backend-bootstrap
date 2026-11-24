@@ -1,18 +1,23 @@
 //app = aplication
-const express = require('express')
-const routes = require('./routes')
+const path = require("path");
+const express = require("express"); //Framework para crear aplicaciones web y APIs
+const routes = require("./routes"); //Rutas de la API
 
-const app = express()
+const app = express(); //Inicializamos la app
+app.use(express.json()); //Comunicacion es Json
 
-app.use(express.json())
-
-app.get('/', (req, res) => {
+//Mensaje predeterminado 
+//http://miaplicacion.com/
+/*
+app.get("/", (req, res) => {
   res.status(200).json({
     ok: true,
-    message: 'API REST ejecutandose correctamente'
-  
-  })
-})
+    message: "API REST ejecutandose correctamente",
+  });
+});
+*/
+app.use(express.static(path.join(__dirname, '..', 'public'))); //Carpeta publica para el front-end
 
-app.use('/api', routes)
-module.exports = app
+//Habilitamos las rutas de la API
+app.use("/api", routes);
+module.exports = app;
